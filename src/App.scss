@@ -1,0 +1,24 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .nets-header {
+    height: 50px;
+    background: #c62f2f;
+    -webkit-app-region: drag;
+    @include flex;
+  }
+  .nets-footer {
+    height: 50px;
+    @include flex;
+  }
+  .nets-main {
+    flex: 1 1 0%;
+    @include flex;
+  }
+}
