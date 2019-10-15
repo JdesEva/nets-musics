@@ -1,9 +1,14 @@
 @mixin flex {
   display: flex;
   align-items: center;
+  -webkit-user-select: none;
 }
 
 .App {
+  * {
+    margin: 0;
+    padding: 0;
+  }
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -12,6 +17,22 @@
     background: #c62f2f;
     -webkit-app-region: drag;
     @include flex;
+    * {
+      -webkit-app-region: no-drag; // 暂时性解决，根本上没有解决系统菜单的问题
+    }
+    .nets-logo {
+      padding-left: 20px;
+      p {
+        background: url("./asserts/logo/logos.png") 0 0 no-repeat;
+        background-size: 116px 26px;
+      }
+      a {
+        display: block;
+        width: 160px;
+        height: 26px;
+        opacity: 0;
+      }
+    }
   }
   .nets-footer {
     height: 50px;
