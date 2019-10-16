@@ -8,7 +8,18 @@ let mainWindow
 
 function createWindow() {
   //创建浏览器窗口,宽高自定义具体大小你开心就好
-  mainWindow = new BrowserWindow({ width: 1024, height: 678, frame: false })
+  mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 678,
+    frame: false,
+    webPreferences: {
+      javascript: true,
+      plugins: true,
+      nodeIntegration: true, // 是否集成 Nodejs
+      webSecurity: false,
+      preload: path.join(__dirname, './public/renderer.js') // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
+    }
+  })
   /*
    * 加载应用-----  electron-quick-start中默认的加载入口 */
   mainWindow.loadURL(

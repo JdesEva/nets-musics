@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { makeDraggable } from '../utils/utils'
 
 const Header: React.FC<any> = (props: any) => {
   const [value, setValue] = useState<string>('')
 
   useEffect(() => {
-    setValue('你好啊' + Math.random())
-    console.log(11111)
+    makeDraggable('.nets-header')
   }, [])
 
   return (
     <div className="nets-header">
-      <div className="nets-logo">
-        <p>
-          <a href="/#">网易云音乐</a>
-        </p>
-      </div>
+      <div className="nets-logo"></div>
       <div className="nets-pagination">
         <span onClick={() => console.log(1)}>
           <i className="icon-goLeft1 iconfont"></i>
@@ -27,9 +23,10 @@ const Header: React.FC<any> = (props: any) => {
         <input
           value={value}
           type="text"
+          placeholder="搜索音乐，视频，歌词，电台"
           onChange={(ev: any) => setValue(ev.target.value)}
         />
-        <div>{value}</div>
+        <i className="iconfont icon-search"></i>
       </div>
     </div>
   )
