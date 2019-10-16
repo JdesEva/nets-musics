@@ -21,9 +21,9 @@
       -webkit-app-region: no-drag; // 暂时性解决，根本上没有解决系统菜单的问题
     }
     .nets-logo {
-      padding-left: 20px;
+      padding-left: 15px;
       p {
-        background: url("./asserts/logo/logos.png") 0 0 no-repeat;
+        background: url('./asserts/logo/logos.png') 0 0 no-repeat;
         background-size: 116px 26px;
       }
       a {
@@ -31,6 +31,26 @@
         width: 160px;
         height: 26px;
         opacity: 0;
+      }
+    }
+    .nets-pagination {
+      color: #fff;
+      margin-left: 17px;
+      i {
+        position: absolute;
+        font-size: 9px;
+        padding-bottom: 5px;
+        left: 8px;
+        top: 6px;
+      }
+      & span {
+        height: 20px;
+        display: inline-block;
+        box-shadow: 0 0 0 0.5px #666;
+        border-radius: 1px;
+        padding: 0 13px;
+        position: relative;
+        cursor: pointer;
       }
     }
   }
