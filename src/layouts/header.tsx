@@ -1,6 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Header: React.FC<any> = (props: any) => {
+  const [value, setValue] = useState<string>('')
+
+  useEffect(() => {
+    setValue('你好啊' + Math.random())
+    console.log(11111)
+  }, [])
+
   return (
     <div className="nets-header">
       <div className="nets-logo">
@@ -17,7 +24,12 @@ const Header: React.FC<any> = (props: any) => {
         </span>
       </div>
       <div className="nets-search">
-        <input type="text" />
+        <input
+          value={value}
+          type="text"
+          onChange={(ev: any) => setValue(ev.target.value)}
+        />
+        <div>{value}</div>
       </div>
     </div>
   )
