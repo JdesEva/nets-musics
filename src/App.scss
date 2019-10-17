@@ -8,22 +8,35 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  * {
+    margin: 0;
+    padding: 0;
+  }
   .nets-header {
     height: 50px;
     background: #c62f2f;
     @include flex;
+    justify-content: space-between;
+    & > div {
+      @include flex;
+    }
     .nets-logo {
       margin-left: 15px;
-      width: 112px;
+      width: 140px;
+      text-align: right;
+      color: #fff;
       height: 26px;
       background: url("./asserts/logo/logos.png") 0 0 no-repeat;
       background-size: 116px 26px;
       cursor: pointer;
+      p {
+        font-size: 12px;
+      }
     }
     .nets-pagination {
       @include flex;
-      color: #fff;
-      margin-left: 65px;
+      color: rgba($color: #eec1c1, $alpha: 0.4);
+      margin-left: 38px;
       i {
         position: absolute;
         font-size: 9px;
@@ -42,7 +55,7 @@
       }
     }
     .nets-search {
-      margin-left: 12px;
+      margin-left: 10px;
       padding: 2px 10px;
       border-radius: 12px;
       background: rgba($color: #000, $alpha: 0.15);
@@ -58,13 +71,78 @@
           font-size: 12px;
           font-family: "宋体";
         }
-        &:focus::placeholder {
-          color: transparent;
+        &:focus {
+          &::placeholder {
+            color: transparent;
+          }
+          & + i {
+            color: rgba($color: #fff, $alpha: 1);
+          }
         }
       }
       i {
-        font-size: 18px;
         color: rgba($color: #fff, $alpha: 0.34);
+      }
+    }
+    .nets-user {
+      @include flex;
+      cursor: pointer;
+      padding-right: 18px;
+      border-right: 1px solid rgba($color: #000, $alpha: 0.18);
+      .avatar {
+        width: 24px;
+        height: 24px;
+        background: #e3e3e5;
+        border-radius: 50%;
+        @include flex;
+        justify-content: center;
+        & > i:first-child {
+          font-size: 20px;
+          font-weight: bold;
+          color: #fff;
+        }
+      }
+      p {
+        font-size: 12px;
+        font-family: "宋体";
+        color: #eec1c1;
+        margin-left: 7px;
+        &:hover {
+          color: #fff;
+        }
+        & > i {
+          margin-left: 5px;
+          font-size: 13px;
+        }
+      }
+      p.toolbar {
+        margin-left: 10px;
+        i {
+          font-size: 22px;
+        }
+        &:not(:first-child) {
+          margin-left: 12px;
+        }
+      }
+    }
+    .nets-bar {
+      @include flex;
+      margin-right: 14px;
+      ul {
+        list-style: none;
+        padding-left: 11px;
+        li {
+          display: inline-block;
+          padding: 0 4px;
+          cursor: pointer;
+          i {
+            font-size: 14px;
+            color: #eec1c1;
+            &:hover {
+              color: #fff;
+            }
+          }
+        }
       }
     }
   }

@@ -43,15 +43,15 @@
       "oneClick": false,
       "allowElevation": true,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "src/asserts/logo/format.ico",
-      "uninstallerIcon": "src/asserts/logo/format.ico",
-      "installerHeaderIcon": "src/asserts/logo/format.ico",
+      "installerIcon": "public/favicon.ico",
+      "uninstallerIcon": "public/favicon.ico",
+      "installerHeaderIcon": "public/favicon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "nets-music.ico"
     },
     "win": {
-      "icon": "src/asserts/logo/format.ico",
+      "icon": "public/favicon.ico",
       "target": [
         {
           "target": "nsis",
