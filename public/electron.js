@@ -17,21 +17,24 @@ function createWindow() {
       plugins: true,
       nodeIntegration: true, // 是否集成 Nodejs
       webSecurity: false,
-      preload: path.join(__dirname, './public/renderer.js') // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
+      preload: path.join(__dirname, './renderer.js') // 但预加载的 js 文件内仍可以使用 Nodejs 的 API
     }
   })
-  /*
-   * 加载应用-----  electron-quick-start中默认的加载入口 */
-  mainWindow.loadURL(
-    url.format({
-      pathname: path.join(__dirname, './build/index.html'),
-      protocol: 'file:',
-      slashes: true
-    })
-  )
 
-  // 加载应用----适用于 react 项目
-  mainWindow.loadURL('http://localhost:3000/')
+  if (process.env.NODE_ENV === 'production') {
+    /*
+     * 加载应用-----  electron-quick-start中默认的加载入口 */
+    mainWindow.loadURL(
+      url.format({
+        pathname: path.join(__dirname, './index.html'),
+        protocol: 'file:',
+        slashes: true
+      })
+    )
+  } else {
+    // 加载应用----适用于 react 项目
+    mainWindow.loadURL('http://localhost:3000/')
+  }
 
   // 打开开发者工具，默认不打开
   mainWindow.webContents.openDevTools()

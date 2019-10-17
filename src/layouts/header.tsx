@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { makeDraggable } from '../utils/utils'
 
-const Header: React.FC<any> = (props: any) => {
+const Header: React.FC<any> = props => {
   const [value, setValue] = useState<string>('')
 
   useEffect(() => {

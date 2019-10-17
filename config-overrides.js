@@ -31,8 +31,10 @@ const addCustom = () => config => {
       minRatio: 0.8
     })
   ]
-  if (process.env.NODE_ENV !== 'development')
+  if (process.env.NODE_ENV !== 'development') {
     config.plugins = [...config.plugins, ...plugins]
+  }
+  config.module.unknownContextCritical = false // 忽略模块上下文警告信息
   return config
 }
 

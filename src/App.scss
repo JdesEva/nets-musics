@@ -21,6 +21,7 @@
       cursor: pointer;
     }
     .nets-pagination {
+      @include flex;
       color: #fff;
       margin-left: 65px;
       i {
@@ -51,12 +52,14 @@
         border: none;
         outline: none;
         caret-color: #fff;
-        margin-bottom: 3px;
         width: 180px;
         &::placeholder {
           color: rgba($color: #fff, $alpha: 0.34);
           font-size: 12px;
           font-family: "宋体";
+        }
+        &:focus::placeholder {
+          color: transparent;
         }
       }
       i {
