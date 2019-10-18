@@ -3,7 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 去console插件
 const CompressionWebpackPlugin = require('compression-webpack-plugin') // gzip压缩插件
 const {
   override,
-  //  fixBabelImports,
+  fixBabelImports,
   addDecoratorsLegacy,
   addWebpackAlias
 } = require('customize-cra')
@@ -39,11 +39,11 @@ const addCustom = () => config => {
 }
 
 module.exports = override(
-  //   fixBabelImports('import', {
-  //     libraryName: 'antd',
-  //     libraryDirectory: 'es',
-  //     style: 'css'
-  //   }),
+  fixBabelImports('import', {
+    libraryName: 'antd',
+    libraryDirectory: 'es',
+    style: 'css'
+  }),
   addDecoratorsLegacy(), //装饰器
   addWebpackAlias({ '@': path.resolve(__dirname, 'src') }),
   addCustom()
