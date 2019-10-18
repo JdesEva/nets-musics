@@ -44,6 +44,17 @@ yarn start
 yarn serve
 ```
 
+- 打包
+  - 第一步请先运行react-app打包命令
+  ```bash
+  yarn build
+  ```
+
+  - 第二步运行electron打包命令
+  ```bash
+  yarn dist:win | yarn dist:win32 | yarn dist:win64
+  ```
+
 ### 已完成
 
 - [x] 项目打包流程
