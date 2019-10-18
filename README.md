@@ -8,6 +8,10 @@ react + electron 构建 PC 版网易云音乐
 
 > server 文件夹即为原来的 **NeteaseCloudMusicApi** 项目
 
+## 重要说明
+
+> 运行此项目需要安装`python2.7.x`环境，以及 Visual Studio C++ 环境（建议安装2017版本）。请自行安装环境。
+
 ### 安装
 
 ```bash
