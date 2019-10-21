@@ -1,0 +1,26 @@
+.nets-menu {
+  padding: 5px 0;
+  color: rgba($color: #000, $alpha: 0.6);
+  .nets-menu-title {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+  .nets-menu-wrapper {
+    margin-bottom: 20px;
+    & > .nets-menu-list {
+      cursor: pointer;
+      padding: 5px 20px;
+      span {
+        font-size: 12px;
+      }
+      &:hover {
+        color: #000;
+      }
+      &.active {
+        color: #000;
+        background: #e6e7ea;
+        border-left: 3px solid #c62f2f;
+      }
+    }
+  }
+}

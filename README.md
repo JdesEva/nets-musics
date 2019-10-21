@@ -55,16 +55,20 @@ yarn serve
   yarn dist:win | yarn dist:win32 | yarn dist:win64
   ```
 
+> 打包前请注释`electron.js`第37行代码，并将`config-overrides.js`中关于`uglifyjs`和`compression`的配置改为全环境下生效（开发时仅仅在测试和生产环境生效）
+
 ### 已完成
 
 - [x] 项目打包流程
 - [x] 窗口调整功能（最大化、最小化、还原、关闭） | mini模式暂不支持
 - [x] 窗口拖拽
 - [x] 调整窗口大小
+- [x] 底部播放器
 
 ### 待完成
 
-- [ ] 底部播放器
+- [ ] 左侧菜单
+- [ ] 右下角功能区
 
 ### 未完成部分
 

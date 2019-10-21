@@ -1,0 +1,52 @@
+[
+  {
+    "title": "推荐",
+    "children": [
+      {
+        "name": "发现音乐",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "私人FM",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "LOOK直播",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "视频",
+        "icon": "",
+        "router": ""
+      }
+    ]
+  },
+  {
+    "title": "我的音乐",
+    "children": [
+      {
+        "name": "本地音乐",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "下载管理",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "我的音乐云盘",
+        "icon": "",
+        "router": ""
+      },
+      {
+        "name": "我的收藏",
+        "icon": "",
+        "router": ""
+      }
+    ]
+  }
+]

@@ -8,8 +8,9 @@ interface Voice {
 
 const Footer: React.FC<any> = props => {
   const [play, setPlay] = useState<boolean>(false) // 播放图标
-  const [volumn, setVolumn] = useState<Voice>({ nowVolumn: 0, oldVolumn: 48 }) // 音量绑定值 - 应当设置初始值为系统音量即可 第一个值永远都是改变的后的值，第二个值是改变之前的值
+  const [volumn, setVolumn] = useState<Voice>({ nowVolumn: 48, oldVolumn: 48 }) // 音量绑定值 - 应当设置初始值为系统音量即可 第一个值永远都是改变的后的值，第二个值是改变之前的值
   const [process, setProcess] = useState<number>(0) // 播放进度
+  // const [playType, setPlayType] = useState<Array<object>>([{}])
 
   /**
    * 点击播放按钮的操作
@@ -70,11 +71,14 @@ const Footer: React.FC<any> = props => {
         </p>
       </div>
       <div className="nets-process">
+        <p>00:00</p>
         <Slider
           value={process}
+          disabled={process === 0}
           onChange={(val: any) => _onchangeProcess(val)}
           tooltipVisible={false}
         ></Slider>
+        <p>00:00</p>
       </div>
       <div className="nets-voice">
         <div onClick={_toggleNoVoice}>
@@ -91,7 +95,19 @@ const Footer: React.FC<any> = props => {
           tooltipVisible={false}
         ></Slider>
       </div>
-      <div className="nets-bar">1</div>
+      <div className="nets-bar">
+        <ul>
+          <li>
+            <i className="iconfont icon-xinaixin"></i>
+          </li>
+          <li>
+            <i className="iconfont icon-ci"></i>
+          </li>
+          <li>
+            <i className="iconfont icon-plist"></i>
+          </li>
+        </ul>
+      </div>
     </div>
   )
 }
