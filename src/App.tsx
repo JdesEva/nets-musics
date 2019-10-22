@@ -5,6 +5,7 @@ import Main from './layouts/main'
 import Footer from './layouts/footer'
 
 const App: React.FC<any> = (props: any) => {
+  console.log(import(/* webpackChunkName: "Index" */ './views/index/index'))
   return (
     <div className="App">
       <Header></Header>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { makeDraggable } from '../utils/utils'
+import { __Dragable } from '../utils/utils'
 import electron from '../utils/electron'
 
 const Header: React.FC<any> = props => {
@@ -29,7 +29,7 @@ const Header: React.FC<any> = props => {
   }
 
   useEffect(() => {
-    makeDraggable('.nets-header')
+    __Dragable('.nets-header')
   }, [])
 
   return (

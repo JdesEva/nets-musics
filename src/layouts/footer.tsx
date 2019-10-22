@@ -74,7 +74,6 @@ const Footer: React.FC<any> = props => {
         <p>00:00</p>
         <Slider
           value={process}
-          disabled={process === 0}
           onChange={(val: any) => _onchangeProcess(val)}
           tooltipVisible={false}
         ></Slider>

@@ -1,0 +1,22 @@
+.nets-nav {
+  display: flex;
+  align-items: center;
+  -webkit-user-select: none;
+  justify-content: center;
+  height: 44px;
+  margin: 0 30px;
+  border-bottom: 1px solid rgba($color: #ccc, $alpha: 0.6);
+  & a {
+    padding: 10px 0;
+    margin: 0 21px;
+    color: #000;
+    border-bottom: 2px solid transparent;
+    &:hover {
+      color: #c62f2f;
+    }
+    &.active {
+      border-bottom-color: #c62f2f;
+      color: #c62f2f;
+    }
+  }
+}
