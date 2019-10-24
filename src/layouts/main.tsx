@@ -1,6 +1,6 @@
 import React from 'react'
 import Aside from './aside'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import routes from '../router'
 
 const Main: React.FC<any> = props => {
@@ -19,7 +19,7 @@ const Main: React.FC<any> = props => {
                 ></Route>
               )
             })}
-            <Redirect from="/" to="/index"></Redirect>
+            {/* <Redirect from="/" to="/index"></Redirect> */}
           </Switch>
         </HashRouter>
       </div>

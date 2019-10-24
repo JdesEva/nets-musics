@@ -3,7 +3,7 @@ import Loadable from 'react-loadable'
 const routes = [
   {
     name: 'index',
-    path: '/index',
+    path: '/',
     component: Loadable({
       loader: () =>
         import(/* webpackChunkName: "Index" */ './views/index/index'),
