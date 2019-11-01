@@ -1,0 +1,29 @@
+.nets-banner {
+  height: 245px;
+  .nets-banner-img-preload {
+    display: none;
+  }
+  .banner-wrapper {
+    height: 100%;
+    overflow: hidden;
+    margin: 20px auto;
+    display: flex;
+    width: 760px;
+    img {
+      width: 380px;
+      height: 190px;
+    }
+    .active {
+      img {
+        width: 540px;
+        height: 200px;
+      }
+    }
+    & > div:not(:nth-last-child(2)) {
+      margin-top: 10px;
+    }
+    & > div:nth-child(2) {
+      margin-left: -270px;
+    }
+  }
+}
