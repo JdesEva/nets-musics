@@ -29,6 +29,7 @@ const Banner: React.FC<any> = props => {
    * @param index {number} - [index = 0] 图片索引
    */
   //   const _currentIndex = (index: number = 0): any => {
+
   //     if (index > bannerList.length - 1) index = 0
   //     if (index < 0) index = bannerList.length - 1
   //     return bannerList.find((row: any, idx: number) => idx === index)
