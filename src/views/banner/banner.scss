@@ -4,26 +4,58 @@
     display: none;
   }
   .banner-wrapper {
-    height: 100%;
     overflow: hidden;
     margin: 20px auto;
     display: flex;
     width: 760px;
+    position: relative;
+    height: 200px;
     img {
       width: 380px;
       height: 190px;
     }
     .active {
+      z-index: 6;
       img {
         width: 540px;
         height: 200px;
       }
     }
-    & > div:not(:nth-last-child(2)) {
-      margin-top: 10px;
+    & div {
+      position: absolute;
+      z-index: 1;
+      &:nth-child(2) {
+        left: 110px;
+      }
+      &:nth-child(3) {
+        left: 380px;
+      }
+      &:nth-child(4) {
+        left: 190px;
+      }
     }
-    & > div:nth-child(2) {
-      margin-left: -270px;
+    & div,
+    img {
+      transition: all ease-in-out 0.8s;
+    }
+    & > div:not(.active) {
+      margin-top: 10px;
+      z-index: 1;
+    }
+    /* transition 动画部分**/
+    & div {
+      &.tr1 {
+        left: 190px;
+      }
+      &.tr2 {
+        left: 0;
+      }
+      &.tr3 {
+        left: 110px;
+      }
+      &.tr4 {
+        left: 380px;
+      }
     }
   }
 }
