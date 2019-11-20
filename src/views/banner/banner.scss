@@ -1,11 +1,12 @@
 .nets-banner {
   height: 245px;
+
   .nets-banner-img-preload {
     display: none;
   }
   .banner-wrapper {
     overflow: hidden;
-    margin: 20px auto;
+    margin: 20px auto 0;
     display: flex;
     width: 760px;
     position: relative;
@@ -41,20 +42,37 @@
     & > div:not(.active) {
       margin-top: 10px;
       z-index: 1;
+      background: #000;
+      img {
+        filter: opacity(0.8);
+      }
     }
     /* transition 动画部分**/
     & div {
       &.tr1 {
-        left: 190px;
-      }
-      &.tr2 {
         left: 0;
       }
-      &.tr3 {
+      &.tr2 {
         left: 110px;
       }
-      &.tr4 {
+      &.tr3 {
         left: 380px;
+      }
+      &.tr4 {
+        left: 190px;
+      }
+    }
+  }
+  .banner-navgaitor {
+    text-align: center;
+    span {
+      transition: all ease-in-out 0.8s;
+      margin: 0 5px;
+      border-bottom: 2px solid #ccc;
+      padding: 0 2px;
+      cursor: pointer;
+      &.active {
+        border-color: #c62f2f;
       }
     }
   }

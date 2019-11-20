@@ -39,11 +39,19 @@ const addCustom = () => config => {
 }
 
 module.exports = override(
-  fixBabelImports('import', {
-    libraryName: 'antd',
-    libraryDirectory: 'es',
-    style: 'css'
-  }),
+  fixBabelImports(
+    'import',
+    {
+      libraryName: 'antd',
+      libraryDirectory: 'es',
+      style: 'css'
+    },
+    {
+      libraryName: 'react-use',
+      libraryDirectory: 'lib',
+      camel2DashComponentName: false
+    }
+  ),
   addDecoratorsLegacy(), //装饰器
   addWebpackAlias({ '@': path.resolve(__dirname, 'src') }),
   addCustom()

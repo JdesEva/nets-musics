@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { useMount, useUnmount } from 'react-use'
 import './banner.scss'
 import http from '../../api/api'
 import server from '../../api/server'
 
 const Banner: React.FC<any> = props => {
   const [bannerList, setBannerList] = useState<Array<any>>([]) // banner数据
-  const [beginFlag, setBeginFlag] = useState<boolean>(false)
-  const [classTag, setClassTag] = useState<Array<number>>([1, 2, 3, 4]) // class索引
+  const [classTag, setClassTag] = useState<Array<number>>([4, 1, 2, 3, 4]) // class索引
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null) //计时器
 
-  useEffect(() => {
+  useMount(() => {
     _getBannerList()
-    let t = setTimeout(() => {
-      console.log('准备开始动画', beginFlag)
-      setBeginFlag(true)
-      initTimer()
+    setTimeout(() => {
+      console.log('准备开始动画')
+      toggleAnimate()
     }, 2000)
+  })
 
-    return () => {
-      console.log('will unmount')
-      clearTimeout(t)
-      if (timer) clearInterval(timer)
-      setTimer(null)
-    }
-  }, [beginFlag, initTimer, timer])
+  useUnmount(() => {
+    console.log('组件注销')
+    if (timer) clearInterval(timer)
+    setTimer(null)
+  })
 
   /**
    * 获取banner数据
@@ -31,47 +29,24 @@ const Banner: React.FC<any> = props => {
   const _getBannerList = (): void => {
     http.get(server.banner).then((res: any) => {
       console.log(res)
-      if (res.data.code === 200) setBannerList(res.data.banners)
-    })
-  }
-
-  /**
-   * 调整当前数据顺序
-   * @param r {boolean}  向左向右 默认向左
-   */
-  const changeBannerListIndex = (r: boolean): void => {
-    setBannerList(c => {
-      let res: Array<object> = []
-      let base: Array<object> = []
-      if (!r) {
-        let v = c.splice(0, 1)
-        res = [...c, ...v]
-        base = res.splice(0, 4) // 对base 按照 classTag 排序
-      } else {
-        let v = c.splice(-1)
-        res = [...v, ...c]
-        base = res.splice(0, 4)
-      }
-      // 对 base 按照classTag进行排序 ---- 此处有bug
-      if (r) {
-        let v = base.splice(0, 1)
-        return [...base, ...v, ...res]
-      } else {
-        let v = base.splice(-1)
-        return [...v, ...base, ...res]
+      if (res.data.code === 200) {
+        setBannerList(res.data.banners)
+        console.log(res.data.banners.length)
+        setClassTag(c => {
+          let v = new Array(res.data.banners.length - 5).fill(4)
+          return [...c, ...v]
+        })
       }
     })
   }
 
   /**
    * 获取正确的class类名
-   * @param index - [index = 1] 活跃索引
+   * @param index {number} - [index = 1] 活跃索引
    */
   const currentClassName = (index: number): string => {
-    // console.log(classTag)
-    if (!beginFlag) return index === 1 ? 'active' : ''
     var base = `tr${classTag[index]}`
-    if (classTag[index] === 3) base += ' active'
+    if (classTag[index] === 2) base += ' active'
     return base
   }
 
@@ -82,49 +57,78 @@ const Banner: React.FC<any> = props => {
   const initTimer = (r: boolean = false) => {
     if (timer) clearInterval(timer)
     let t = setInterval(() => {
-      changeBannerListIndex(r)
-      //   console.log(changeBannerListIndex(r))
-      setClassTag(c => {
-        if (r) {
-          let v = c.splice(0, 1)
-          return [...c, ...v]
-        } else {
-          let v = c.splice(-1)
-          return [...v, ...c]
-        }
-      })
-    }, 1800)
+      transformClassTag(r)
+    }, 4800)
     setTimer(t)
   }
 
+  /**
+   * 切换class函数
+   * @param r {boolean} - [r = false] 向左向右 默认向左
+   */
+  const transformClassTag = (r: boolean = false): void => {
+    setClassTag(c => {
+      if (r) {
+        let v = c.splice(0, 1)
+        return [...c, ...v]
+      } else {
+        let v = c.splice(-1)
+        return [...v, ...c]
+      }
+    })
+  }
+
+  /**
+   * 跳转
+   * @param index {number} 索引 --- 暂未解决
+   */
+  const transformTo = (index: number): void => {
+    console.log(index)
+  }
+
+  /**
+   * 动画开关
+   * @param isOpen {boolean} - [isOpen = false] 是否开启动画
+   */
+  const toggleAnimate = (isOpen: boolean = true): void => {
+    if (isOpen) {
+      initTimer()
+    } else {
+      if (timer) clearInterval(timer)
+      setTimer(null)
+    }
+  }
+
   return (
-    <div className="nets-banner">
+    <div
+      className="nets-banner"
+      onMouseEnter={() => toggleAnimate(false)}
+      onMouseLeave={() => toggleAnimate()}
+    >
       <div className="nets-banner-img-preload">
         {bannerList.map((row: any, idx: number) => {
           return <img key={idx} src={row.imageUrl} alt="" />
         })}
       </div>
       <div className="banner-wrapper">
-        {bannerList.slice(0, 3).map((item: any, index: number) => {
+        {bannerList.map((item: any, index: number) => {
           return (
             <div key={index} className={currentClassName(index)}>
               <img src={item.imageUrl} alt="" />
             </div>
           )
         })}
-        {bannerList.slice(3, 4).map((row: any, index: number) => {
-          return (
-            <div key={index} className={currentClassName(3)}>
-              <img src={row.imageUrl} alt="" />
-            </div>
-          )
-        })}
       </div>
-      <div className="nets-banner-navgaitor">开始动画!</div>
-      <div>
-        {bannerList.map((row: any, idx: number) => {
+      <div className="banner-navgaitor">
+        {classTag.map((item: any, index: number) => {
           return (
-            <img key={idx} width="100" height="40" src={row.imageUrl} alt="" />
+            <span
+              onMouseEnter={() => transformTo(index)}
+              className={item === 2 ? 'active' : ''}
+              key={index}
+            >
+              &nbsp;
+            </span>
           )
         })}
       </div>
