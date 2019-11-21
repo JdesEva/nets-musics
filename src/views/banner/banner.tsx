@@ -3,6 +3,7 @@ import { useMount, useUnmount } from 'react-use'
 import './banner.scss'
 import http from '../../api/api'
 import server from '../../api/server'
+import { __Debounce } from 'src/utils/utils'
 
 const Banner: React.FC<any> = props => {
   const [bannerList, setBannerList] = useState<Array<any>>([]) // banner数据
@@ -86,7 +87,7 @@ const Banner: React.FC<any> = props => {
    * 当 index > idx 时候，应该右移，反之左移。只需要截取然后拼接即可
    */
   const transformTo = (index: number): void => {
-    console.log(index)
+    // console.log(index)
     setClassTag(c => {
       let idx = c.findIndex(v => v === 2)
       if (index >= idx) {
@@ -98,6 +99,12 @@ const Banner: React.FC<any> = props => {
       }
     })
   }
+
+  /**
+   * 返回防抖函数包装之后的函数
+   * @returns {Function} debounceFunction
+   */
+  const deFn = __Debounce((index: number) => transformTo(index), 300)
 
   /**
    * 动画开关
@@ -124,6 +131,9 @@ const Banner: React.FC<any> = props => {
         })}
       </div>
       <div className="banner-wrapper">
+        <span onClick={() => transformClassTag()}>
+          <i className="iconfont icon-left"></i>
+        </span>
         {bannerList.map((item: any, index: number) => {
           return (
             <div key={index} className={currentClassName(index)}>
@@ -131,12 +141,15 @@ const Banner: React.FC<any> = props => {
             </div>
           )
         })}
+        <span onClick={() => transformClassTag(true)}>
+          <i className="iconfont icon-right"></i>
+        </span>
       </div>
       <div className="banner-navgaitor">
         {classTag.map((item: any, index: number) => {
           return (
             <span
-              onMouseEnter={() => transformTo(index)}
+              onMouseEnter={() => deFn(index)}
               className={item === 2 ? 'active' : ''}
               key={index}
             >

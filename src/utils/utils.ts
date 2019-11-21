@@ -73,8 +73,8 @@ export function __Once(method: Function): Function {
 
 /**
  * 防抖函数
- * @param {Function} method 事件触发的操作，传入的函数
- * @param {Number} [delay = 500] - 多少毫秒内连续触发事件，不会执行
+ * @param method {Function}  事件触发的操作，传入的函数
+ * @param delay {Number} - [delay = 500] 多少毫秒内连续触发事件，不会执行
  * @returns {Function} - 返回包装之后的函数
  */
 export function __Debounce(method: Function, delay: number = 500): Function {
