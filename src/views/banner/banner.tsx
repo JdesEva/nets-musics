@@ -58,7 +58,7 @@ const Banner: React.FC<any> = props => {
     if (timer) clearInterval(timer)
     let t = setInterval(() => {
       transformClassTag(r)
-    }, 4800)
+    }, 3000)
     setTimer(t)
   }
 
@@ -80,10 +80,23 @@ const Banner: React.FC<any> = props => {
 
   /**
    * 跳转
-   * @param index {number} 索引 --- 暂未解决
+   * @param index {number} 索引
+   * 方法
+   * 首先获取 idx 与 index 的差值，代表移位值
+   * 当 index > idx 时候，应该右移，反之左移。只需要截取然后拼接即可
    */
   const transformTo = (index: number): void => {
     console.log(index)
+    setClassTag(c => {
+      let idx = c.findIndex(v => v === 2)
+      if (index >= idx) {
+        let v = c.splice(idx - index)
+        return [...v, ...c]
+      } else {
+        let v = c.splice(0, idx - index)
+        return [...c, ...v]
+      }
+    })
   }
 
   /**

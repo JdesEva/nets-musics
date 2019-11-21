@@ -1,3 +1,5 @@
+$--transition: all ease-in-out 1s;
+
 .nets-banner {
   height: 245px;
 
@@ -37,14 +39,14 @@
     }
     & div,
     img {
-      transition: all ease-in-out 0.8s;
+      transition: $--transition;
     }
     & > div:not(.active) {
       margin-top: 10px;
       z-index: 1;
       background: #000;
       img {
-        filter: opacity(0.8);
+        filter: opacity(70%);
       }
     }
     /* transition 动画部分**/
@@ -66,7 +68,7 @@
   .banner-navgaitor {
     text-align: center;
     span {
-      transition: all ease-in-out 0.8s;
+      transition: $--transition;
       margin: 0 5px;
       border-bottom: 2px solid #ccc;
       padding: 0 2px;
