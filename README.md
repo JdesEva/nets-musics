@@ -75,6 +75,7 @@ yarn serve
 - [ ] 右下角功能区
 - [ ] 主页 nav 导航
 - [ ] banner 跳转
+- [ ] banner 动画优化
 
 ### 未完成部分
 
