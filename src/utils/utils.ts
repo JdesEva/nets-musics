@@ -386,3 +386,17 @@ export class Storage {
     }
   }
 }
+
+export function __Time(sec: number): string {
+  let m = (sec / 60) | 0 // 分钟
+  let s = sec <= 60 ? sec : sec - 60 * m
+  return `${__num(m)}:${__num(s | 0)}`
+}
+
+/**
+ * 添加 0
+ */
+
+export function __num(num: number) {
+  return num < 10 ? '0' + num : num
+}
