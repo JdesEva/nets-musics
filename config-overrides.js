@@ -2,6 +2,7 @@ const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin') // 去console插件
 const CompressionWebpackPlugin = require('compression-webpack-plugin') // gzip压缩插件
 // const CopyWebpackPlugin = require('copy-webpack-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin')
 const {
   override,
   fixBabelImports,
@@ -30,13 +31,14 @@ const addCustom = () => config => {
       test: new RegExp('\\.(' + ['js', 'css'].join('|') + ')$'),
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
     // new CopyWebpackPlugin([
     //   {
     //     from: path.resolve(__dirname, 'src/asserts/audio'),
     //     to: __dirname + '/build/asserts/audio'
     //   }
     // ])
+    new HardSourceWebpackPlugin()
   ]
   if (process.env.NODE_ENV !== 'development') {
     config.plugins = [...config.plugins, ...plugins]

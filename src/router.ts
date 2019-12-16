@@ -3,10 +3,9 @@ import Loadable from 'react-loadable'
 const routes = [
   {
     name: 'index',
-    path: '/',
+    path: '/index',
     component: Loadable({
-      loader: () =>
-        import(/* webpackChunkName: "Index" */ './views/index/index'),
+      loader: () => import(/* webpackChunkName: "Index" */ './views/main/mian'),
       loading: () => null
     })
   },
@@ -20,22 +19,37 @@ const routes = [
     })
   },
   {
-    name: 'vedio',
-    path: '/vedio',
+    name: 'radio',
+    path: '/radio',
     component: Loadable({
       loader: () =>
-        import(/* webpackChunkName: "Vedio" */ './views/vedio/vedio'),
+        import(/* webpackChunkName: "Radio" */ './views/radio/radio'),
       loading: () => null
     })
   },
   {
-    name: 'broadcast',
-    path: '/broadcast',
+    name: 'rank',
+    path: '/rank',
+    component: Loadable({
+      loader: () => import(/* webpackChunkName: "Rank" */ './views/rank/rank'),
+      loading: () => null
+    })
+  },
+  {
+    name: 'singer',
+    path: '/singer',
     component: Loadable({
       loader: () =>
-        import(
-          /* webpackChunkName: "Broadcast" */ './views/broadcast/broadcast'
-        ),
+        import(/* webpackChunkName: "Singer" */ './views/singer/singer'),
+      loading: () => null
+    })
+  },
+  {
+    name: 'latest',
+    path: '/latest',
+    component: Loadable({
+      loader: () =>
+        import(/* webpackChunkName: "Latest" */ './views/latest/latest'),
       loading: () => null
     })
   }

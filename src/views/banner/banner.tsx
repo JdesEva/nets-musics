@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useMount, useUnmount } from 'react-use'
 import './banner.scss'
 import http from '../../api/api'
@@ -8,7 +8,7 @@ import { __Debounce } from 'src/utils/utils'
 const Banner: React.FC<any> = props => {
   const [bannerList, setBannerList] = useState<Array<any>>([]) // banner数据
   const [classTag, setClassTag] = useState<Array<number>>([4, 1, 2, 3, 4]) // class索引
-  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null) //计时器
+  const timeRef = useRef<any>() // 定时器
 
   useMount(() => {
     _getBannerList()
@@ -19,15 +19,15 @@ const Banner: React.FC<any> = props => {
   })
 
   useUnmount(() => {
-    console.log('组件注销')
-    if (timer) clearInterval(timer)
-    setTimer(null)
+    console.log('组件注销', timeRef)
+    if (timeRef.current) clearInterval(timeRef.current)
+    timeRef.current = null
   })
 
   /**
    * 获取banner数据
    */
-  const _getBannerList = (): void => {
+  let _getBannerList = (): void => {
     http.get(server.banner).then((res: any) => {
       console.log(res)
       if (res.data.code === 200) {
@@ -56,11 +56,11 @@ const Banner: React.FC<any> = props => {
    * @param r {boolean} - [r = false] 向左向右 默认向左
    */
   const initTimer = (r: boolean = false) => {
-    if (timer) clearInterval(timer)
+    if (timeRef.current) clearInterval(timeRef.current)
     let t = setInterval(() => {
       transformClassTag(r)
-    }, 3000)
-    setTimer(t)
+    }, 4000)
+    timeRef.current = t
   }
 
   /**
@@ -104,7 +104,7 @@ const Banner: React.FC<any> = props => {
    * 返回防抖函数包装之后的函数
    * @returns {Function} debounceFunction
    */
-  const deFn = __Debounce((index: number) => transformTo(index), 300)
+  let deFn = __Debounce((index: number) => transformTo(index), 300)
 
   /**
    * 动画开关
@@ -114,8 +114,9 @@ const Banner: React.FC<any> = props => {
     if (isOpen) {
       initTimer()
     } else {
-      if (timer) clearInterval(timer)
-      setTimer(null)
+      console.log(isOpen, timeRef.current)
+      if (timeRef.current) clearInterval(timeRef.current)
+      timeRef.current = null
     }
   }
 
@@ -131,7 +132,7 @@ const Banner: React.FC<any> = props => {
         })}
       </div>
       <div className="banner-wrapper">
-        <span onClick={() => transformClassTag()}>
+        <span onClick={() => transformClassTag(true)}>
           <i className="iconfont icon-left"></i>
         </span>
         {bannerList.map((item: any, index: number) => {
@@ -141,7 +142,7 @@ const Banner: React.FC<any> = props => {
             </div>
           )
         })}
-        <span onClick={() => transformClassTag(true)}>
+        <span onClick={() => transformClassTag()}>
           <i className="iconfont icon-right"></i>
         </span>
       </div>

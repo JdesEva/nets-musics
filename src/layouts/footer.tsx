@@ -19,6 +19,7 @@ const Footer: React.FC<any> = props => {
   const [process, setProcess] = useState<number>(0) // 播放进度
   const [url, setUrl] = useState<string>('') // 歌曲url
   const [Time, setTime] = useState<Array<number>>([0, 0]) // 播放时间
+  const [ready, setReady] = useState<boolean>(false) // 歌曲加载状态
   const audioRef = useRef<any>(null)
 
   useMount(() => {
@@ -51,13 +52,19 @@ const Footer: React.FC<any> = props => {
     // console.log(ev.timeStamp())
     // console.log(audioRef.current.duration)
     // console.log(audioRef.current.currentTime)
-    setTime([audioRef.current.currentTime, audioRef.current.duration])
+    _initTime()
     let p = (audioRef.current.currentTime / audioRef.current.duration) * 100
     setProcess(p)
-    // console.log(audioRef.current.volume)
-    // console.log(Time, p)
-    // console.log(__Time(audioRef.current.currentTime))
-    // console.log(__Time(audioRef.current.duration))
+    if (p === 100) setPlay(false) // 播放完成 将播放按钮改成停止播放
+  }
+
+  /**
+   * 设置时间并且执行回调函数
+   * @param {Function | undefined} - [Fn = undefined] 执行函数
+   */
+  const _initTime = (Fn: Function | undefined = undefined) => {
+    setTime([audioRef.current.currentTime, audioRef.current.duration])
+    if (Fn) Fn()
   }
 
   /**
@@ -81,6 +88,7 @@ const Footer: React.FC<any> = props => {
   const _onchangeProcess = (val: number): void => {
     setProcess(val)
     console.log(val)
+    console.log(audioRef)
     audioRef.current.currentTime = (val / 100) * Time[1]
   }
 
@@ -136,9 +144,15 @@ const Footer: React.FC<any> = props => {
           value={process}
           onChange={(val: any) => _onchangeProcess(val)}
           tooltipVisible={false}
+          disabled={!ready}
         ></Slider>
         <p>{__Time(Time[1])}</p>
-        <audio onTimeUpdate={() => thFn()} src={url} ref={audioRef}></audio>
+        <audio
+          onTimeUpdate={() => thFn()}
+          onCanPlayThrough={() => _initTime(() => setReady(true))}
+          src={url}
+          ref={audioRef}
+        ></audio>
       </div>
       <div className="nets-voice">
         <div onClick={_toggleNoVoice}>

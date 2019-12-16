@@ -5,22 +5,22 @@
   },
   {
     "name": "歌单",
-    "path": ""
+    "path": "/music"
   },
   {
     "name": "主播电台",
-    "path": ""
+    "path": "/radio"
   },
   {
     "name": "排行榜",
-    "path": ""
+    "path": "/rank"
   },
   {
     "name": "歌手",
-    "path": ""
+    "path": "/singer"
   },
   {
     "name": "最新音乐",
-    "path": ""
+    "path": "/latest"
   }
 ]

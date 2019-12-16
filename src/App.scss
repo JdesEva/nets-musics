@@ -1,4 +1,4 @@
-@import "./asserts/common/index.scss"; // 全局样式
+@import './asserts/common/index.scss'; // 全局样式
 
 @mixin flex {
   display: flex;
@@ -30,7 +30,7 @@
       text-align: right;
       color: #fff;
       height: 26px;
-      background: url("./asserts/logo/logos.png") 0 0 no-repeat;
+      background: url('./asserts/logo/logos.png') 0 0 no-repeat;
       background-size: 116px 26px;
       cursor: pointer;
       p {
@@ -72,7 +72,7 @@
         &::placeholder {
           color: rgba($color: #fff, $alpha: 0.34);
           font-size: 12px;
-          font-family: "宋体";
+          font-family: '宋体';
         }
         &:focus {
           &::placeholder {
@@ -107,7 +107,7 @@
       }
       p {
         font-size: 12px;
-        font-family: "宋体";
+        font-family: '宋体';
         color: #eec1c1;
         margin-left: 7px;
         &:hover {
@@ -192,8 +192,9 @@
       }
       & p {
         padding: 4px 8px 0;
-        font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-          "Droid Sans", "Helvetica Neue", sans-serif;
+        font-family: BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
       }
     }
     .nets-voice {
@@ -272,6 +273,7 @@
   .nets-main {
     flex: 1 1 0%;
     @include flex;
+    overflow: hidden;
     .nets-aside {
       width: 200px;
       height: 100%;

@@ -12,11 +12,10 @@ interface MenuList {
 }
 
 const Menu: React.FC<any> = props => {
-  console.log(menuList)
   const [active, setActive] = useState<string>('0-0')
-
   const _handleClick = (id: string): void => {
     setActive(id)
+    console.log(id)
   }
 
   return (
