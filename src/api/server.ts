@@ -4,5 +4,6 @@
 
 export default {
   banner: '/banner', //轮播图
-  music: '/song/url' //获取音乐
+  music: '/song/url', //获取音乐
+  personalized: '/personalized' //推荐歌单
 }

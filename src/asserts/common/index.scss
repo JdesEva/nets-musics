@@ -1,7 +1,42 @@
 .nets-card {
   width: 17.89%;
-  height: 0;
-  padding-bottom: 17.89%;
-  border: 1px solid #ccc;
   margin: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  img {
+    width: 100%;
+  }
+  p {
+    font-size: 12px;
+    color: #000;
+    padding: 5px !important;
+  }
+}
+
+.nets-wrapper-list {
+  margin: 0 auto;
+  min-width: 820px;
+  max-width: 1100px;
+  width: auto;
+  padding: 0 30px;
+  h3 {
+    margin: 0;
+    padding-bottom: 5px;
+  }
+  .nets-title {
+    display: flex;
+    text-align: right;
+    border-bottom: 1px solid #ccc;
+    & > div {
+      flex: 1;
+      span {
+        font-size: 12px;
+        cursor: pointer;
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
 }

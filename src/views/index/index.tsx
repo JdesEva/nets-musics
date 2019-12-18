@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Nav from '../nav/nav'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import routes from '../../router'
 import './index.scss'
 import BScroll from 'better-scroll'
@@ -21,13 +21,12 @@ const Index: React.FC<any> = props => {
 
   useUpdateEffect(() => {
     scroll.refresh()
-    console.log('upodate')
-    return () => {
-      console.log('78edn')
-      scroll.destroy()
-    }
+    console.log('updateScroll')
   })
 
+  /**
+   * 初始化滚动条
+   */
   const _initBscroll = () => {
     let BS = new BScroll('.nets-index', {
       scrollY: true,
@@ -42,25 +41,23 @@ const Index: React.FC<any> = props => {
   return (
     <div className="nets-index">
       <div>
-        <HashRouter>
-          <Nav></Nav>
-          <Switch>
-            {routes.map(row => {
-              return (
-                <Route
-                  key={row.path}
-                  path={row.path}
-                  component={row.component}
-                  {...props}
-                ></Route>
-              )
-            })}
-            <Redirect from="/" to="/index"></Redirect>
-          </Switch>
-        </HashRouter>
+        <Nav></Nav>
+        <Switch>
+          {routes.map(row => {
+            return (
+              <Route
+                key={row.path}
+                path={row.path}
+                component={row.component}
+                {...props}
+              ></Route>
+            )
+          })}
+          <Redirect from="/" to="/index"></Redirect>
+        </Switch>
       </div>
     </div>
   )
 }
 
-export default Index
+export default withRouter(Index)
