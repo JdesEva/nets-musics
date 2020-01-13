@@ -1,7 +1,11 @@
-.content {
+@mixin flex-between {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+
+.content {
+  @include flex-between;
   & > div.nets-card {
     &:nth-child(1),
     &:nth-child(6) {
@@ -10,6 +14,18 @@
     &:nth-child(5),
     &:nth-child(10) {
       margin-right: 0;
+    }
+  }
+}
+
+.view-content {
+  @include flex-between;
+  padding-bottom: 60px;
+  div.nets-card {
+    width: 30%;
+    overflow: unset;
+    img {
+      height: 100%;
     }
   }
 }

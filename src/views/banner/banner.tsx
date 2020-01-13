@@ -108,7 +108,7 @@ const Banner: React.FC<any> = props => {
 
   /**
    * 动画开关
-   * @param isOpen {boolean} - [isOpen = false] 是否开启动画
+   * @param isOpen {boolean} - [isOpen = true] 是否开启动画
    */
   const toggleAnimate = (isOpen: boolean = true): void => {
     if (isOpen) {
