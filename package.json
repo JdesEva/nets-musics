@@ -79,6 +79,17 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.tsx": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "description": "nets-music",
   "browserslist": {
     "production": [
