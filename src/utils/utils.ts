@@ -387,6 +387,10 @@ export class Storage {
   }
 }
 
+/**
+ * 将时间转化为分钟
+ * @param sec {number} 时间，单位：秒
+ */
 export function __Time(sec: number): string {
   let m = (sec / 60) | 0 // 分钟
   let s = sec <= 60 ? sec : sec - 60 * m

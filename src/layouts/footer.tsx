@@ -24,7 +24,6 @@ const Footer: React.FC<any> = props => {
 
   useMount(() => {
     console.log(audioRef)
-    console.log(url)
     _getMusic()
   })
 

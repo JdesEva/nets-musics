@@ -12,8 +12,8 @@ module.exports = (query, request) => {
   const data = {
     threadId: query.type + query.id
   }
-  if(query.type=='A_EV_2_'){
-    data.threadId=query.threadId
+  if(query.type == 'A_EV_2_'){
+    data.threadId = query.threadId
   }
   return request(
     'POST', `https://music.163.com/weapi/resource/${query.t}`, data,

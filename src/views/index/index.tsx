@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import Nav from '../nav/nav'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import routes from '../../router'
 import './index.scss'
 import BScroll from 'better-scroll'
 import { useMount, useUnmount, useUpdateEffect } from 'react-use'
 
 const Index: React.FC<any> = props => {
-  const [scroll, setScroll] = useState<any>(null)
+  const scroll = useRef<any>()
 
   useMount(() => {
     _initBscroll()
@@ -15,52 +15,46 @@ const Index: React.FC<any> = props => {
 
   useUnmount(() => {
     console.log('end', scroll)
-    scroll.destroy()
-    setScroll(null)
+    scroll.current.destroy()
   })
 
   useUpdateEffect(() => {
-    scroll.refresh()
-    console.log('upodate')
-    return () => {
-      console.log('78edn')
-      scroll.destroy()
-    }
+    scroll.current.refresh()
+    console.log('updateScroll')
   })
 
+  /**
+   * 初始化滚动条
+   */
   const _initBscroll = () => {
-    let BS = new BScroll('.nets-index', {
+    scroll.current = new BScroll('.nets-index', {
       scrollY: true,
       click: true,
       scrollbar: true,
       mouseWheel: true
     })
-    setScroll(BS)
-    console.log(BS)
   }
 
   return (
     <div className="nets-index">
       <div>
-        <HashRouter>
-          <Nav></Nav>
-          <Switch>
-            {routes.map(row => {
-              return (
-                <Route
-                  key={row.path}
-                  path={row.path}
-                  component={row.component}
-                  {...props}
-                ></Route>
-              )
-            })}
-            <Redirect from="/" to="/index"></Redirect>
-          </Switch>
-        </HashRouter>
+        <Nav></Nav>
+        <Switch>
+          {routes.map(row => {
+            return (
+              <Route
+                key={row.path}
+                path={row.path}
+                component={row.component}
+                {...props}
+              ></Route>
+            )
+          })}
+          <Redirect from="/" to="/index"></Redirect>
+        </Switch>
       </div>
     </div>
   )
 }
 
-export default Index
+export default withRouter(Index)
